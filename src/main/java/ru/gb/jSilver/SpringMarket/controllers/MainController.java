@@ -3,13 +3,13 @@ package ru.gb.jSilver.SpringMarket.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ru.gb.jSilver.SpringMarket.dto.Student;
 import ru.gb.jSilver.SpringMarket.services.StudentService;
 
+import java.util.List;
+
+//@Controller
 @Controller
 @RequiredArgsConstructor
 public class MainController {
@@ -38,12 +38,35 @@ public class MainController {
     @GetMapping("/page")
     public String page(Model model, @RequestParam Integer id) {
         model.addAttribute("student", studentService.getStudentByID(id));
-        return "index.html";
+        return "index";
     }
 
     @GetMapping("/students")
     public String getStudents(Model model) {
         model.addAttribute("students", studentService.getAllStudents());
-        return "students.html";
+        return "students";
+    }
+
+    @GetMapping("/students/add")
+    @ResponseBody
+    public void addStudent(Integer id, String name) {
+        studentService.addNewStudent(id, name);
+    }
+
+    @GetMapping("/show_page")
+    public String form() {
+        return "add_student";
+    }
+
+    @GetMapping("/json")
+    @ResponseBody
+    public List<Student> jsonResponse() {
+        return studentService.getAllStudents();
+    }
+
+    @PostMapping("/students/add")
+    @ResponseBody
+    public void addStudentPost(@RequestBody Student student) {
+        studentService.addStudent(student);
     }
 }

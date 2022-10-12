@@ -1,6 +1,5 @@
 package ru.gb.jSilver.SpringMarket.repos;
 
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.gb.jSilver.SpringMarket.dto.Student;
 
@@ -35,4 +34,11 @@ public class StudentRepository {
         return studentList;
     }
 
+    public void addStudent2(Integer id, String name) {
+        studentList.add(new Student(id, name));
+    }
+
+    public void addStudent2(Student student) {
+        studentList.add(student);
+    }
 }
