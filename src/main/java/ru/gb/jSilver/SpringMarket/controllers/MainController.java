@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.gb.jSilver.SpringMarket.dto.Student;
+import ru.gb.jSilver.SpringMarket.services.ProductService;
 import ru.gb.jSilver.SpringMarket.services.StudentService;
 
 @Controller
@@ -15,6 +16,7 @@ import ru.gb.jSilver.SpringMarket.services.StudentService;
 public class MainController {
 
     private final StudentService studentService;
+    private final ProductService productService;
 
     @GetMapping("/hello")
     @ResponseBody
@@ -45,5 +47,16 @@ public class MainController {
     public String getStudents(Model model) {
         model.addAttribute("students", studentService.getAllStudents());
         return "students.html";
+    }
+
+    @GetMapping("/products")
+    public String getProducts(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
+        return "products.html";
+    }
+    @GetMapping("/info")
+    public String info(Model model, @RequestParam Integer id) {
+        model.addAttribute("product", productService.getProductByID(id));
+        return "info.html";
     }
 }
