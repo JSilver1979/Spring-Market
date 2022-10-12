@@ -19,4 +19,12 @@ public class StudentService {
     public List<Student> getAllStudents() {
         return repo.getAllStudents();
     }
+
+    public void addNewStudent(Integer id, String name) {
+        repo.addStudent2(id, name);
+    }
+
+    public void addStudent(Student student) {
+        repo.addStudent2(student);
+    }
 }
