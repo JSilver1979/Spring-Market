@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Product {
     private Integer id;
     private String name;
-    private Integer score;
+    private Double price;
 }
