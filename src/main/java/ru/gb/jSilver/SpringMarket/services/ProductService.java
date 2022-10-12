@@ -10,13 +10,23 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-    private final ProductRepo productRepository;
+    private final ProductRepository productRepository;
 
-    public Product getProductByID (Integer id) {
-        return repo.findByID(id);
+    public Product getProductById (Integer id) {
+        return productRepository.findByID(id);
     }
 
     public List<Product> getAllProducts() {
-        return repo.getProductList();
+        return productRepository.getAllProducts();
+    }
+
+    public void changePrice(Integer id, Double price) {
+        Product product = productRepository.findByID(id);
+        product.setPrice(product.getPrice() + price);
+    }
+
+    public void deleteProduct(Integer productId) {
+        Product product = productRepository.findByID(productId);
+        productRepository.deleteProduct(product);
     }
 }

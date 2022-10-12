@@ -20,11 +20,16 @@ public class StudentService {
         return repo.getAllStudents();
     }
 
-    public void addNewStudent(Integer id, String name) {
-        repo.addStudent2(id, name);
+    public void addNewStudent(Integer id, String name, Integer score) {
+        repo.addStudent2(id, name, score);
     }
 
     public void addStudent(Student student) {
         repo.addStudent2(student);
+    }
+
+    public void changeScore(Integer id, Integer score) {
+        Student student = repo.findByID(id);
+        student.setScore(student.getScore() + score);
     }
 }

@@ -15,13 +15,13 @@ public class StudentRepository {
     @PostConstruct
     public void init(){
         studentList = new ArrayList<>(Arrays.asList(
-                new Student(1,"Tom"),
-                new Student(2,"Bob"),
-                new Student(3,"Jack"),
-                new Student(4,"Jim"),
-                new Student(5,"Sue"),
-                new Student(6,"Andy"),
-                new Student(7,"Clark")
+                new Student(1,"Tom", 100),
+                new Student(2,"Bob", 100),
+                new Student(3,"Jack", 100),
+                new Student(4,"Jim", 100),
+                new Student(5,"Sue", 100),
+                new Student(6,"Andy", 100),
+                new Student(7,"Clark", 100)
         ));
     }
 
@@ -34,8 +34,8 @@ public class StudentRepository {
         return studentList;
     }
 
-    public void addStudent2(Integer id, String name) {
-        studentList.add(new Student(id, name));
+    public void addStudent2(Integer id, String name, Integer score) {
+        studentList.add(new Student(id, name, score));
     }
 
     public void addStudent2(Student student) {
