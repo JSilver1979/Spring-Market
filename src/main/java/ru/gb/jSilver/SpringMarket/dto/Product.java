@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Product {
     private Integer id;
-    private String title;
-    private double cost;
+    private String name;
+    private Double price;
 }
