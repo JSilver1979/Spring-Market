@@ -1,32 +1,33 @@
 package ru.gb.jSilver.SpringMarket.services;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.gb.jSilver.SpringMarket.dto.Product;
 import ru.gb.jSilver.SpringMarket.repos.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public Product getProductById (Integer id) {
-        return productRepository.findByID(id);
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+    public Optional<Product> findById(Long id) {
+        return productRepository.findById(id);
     }
 
-    public void changePrice(Integer id, Double price) {
-        Product product = productRepository.findByID(id);
-        product.setPrice(product.getPrice() + price);
+    public List<Product> findAllProducts() {
+        return productRepository.findAll();
     }
 
-    public void deleteProduct(Integer productId) {
-        Product product = productRepository.findByID(productId);
-        productRepository.deleteProduct(product);
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
+
+    public void createProduct(Product product) {
+        productRepository.save(product);
     }
 }
