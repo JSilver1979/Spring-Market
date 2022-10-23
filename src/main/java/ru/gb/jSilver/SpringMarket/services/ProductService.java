@@ -1,6 +1,7 @@
 package ru.gb.jSilver.SpringMarket.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.gb.jSilver.SpringMarket.dto.Product;
 import ru.gb.jSilver.SpringMarket.repos.ProductRepository;
 
@@ -28,6 +29,13 @@ public class ProductService {
     }
 
     public void createProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    @Transactional
+    public void changeProductPrice(Long productId, Integer price) {
+        Product product = productRepository.findById(productId).orElseThrow();
+        product.setPrice(product.getPrice() + price);
         productRepository.save(product);
     }
 }
