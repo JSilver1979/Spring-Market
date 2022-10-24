@@ -1,5 +1,5 @@
 angular.module('app',[]).controller('indexController', function ($scope, $http) {
-    const contextPath = 'http://localhost:8189/app'
+    const contextPath = 'http://localhost:8189/app/api/v1'
 
     $scope.loadProducts = function() {
         $http.get(contextPath + '/products')
@@ -22,7 +22,7 @@ angular.module('app',[]).controller('indexController', function ($scope, $http) 
     };
 
     $scope.deleteProduct = function (productId) {
-        $http.get(contextPath + '/products/delete/' + productId)
+        $http.delete(contextPath + '/products/delete/' + productId)
         .then (function (response) {
             $scope.loadProducts();
         });

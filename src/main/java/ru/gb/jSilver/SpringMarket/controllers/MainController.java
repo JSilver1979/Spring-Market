@@ -2,10 +2,9 @@ package ru.gb.jSilver.SpringMarket.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.jSilver.SpringMarket.dto.Student;
+import ru.gb.jSilver.SpringMarket.data.Student;
 import ru.gb.jSilver.SpringMarket.services.StudentService;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
