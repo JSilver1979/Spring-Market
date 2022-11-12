@@ -2,39 +2,49 @@ package ru.gb.jSilver.SpringMarket.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.jSilver.SpringMarket.dto.Product;
+import ru.gb.jSilver.SpringMarket.data.Product;
+import ru.gb.jSilver.SpringMarket.dto.CreateProductDto;
+import ru.gb.jSilver.SpringMarket.dto.ProductDto;
+import ru.gb.jSilver.SpringMarket.dto.ProductListDto;
+import ru.gb.jSilver.SpringMarket.dto.UpdateProductDto;
 import ru.gb.jSilver.SpringMarket.services.ProductService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("products")
-    public List<Product> getProducts() {
+    @GetMapping()
+    public List<ProductListDto> getProducts() {
         return productService.findAllProducts();
     }
 
-    @GetMapping("products/{id}")
-    public Optional<Product> getProduct(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ProductDto getProduct(@PathVariable Long id) {
         return productService.findById(id);
     }
 
-    @GetMapping("products/change_price")
+    @PutMapping("/update")
+    public void updateProduct(@RequestBody UpdateProductDto product) {
+        productService.updateProduct(product);
+    }
+
+    @GetMapping ("/change_price")
     public void changeProductPrice(@RequestParam Long productId, @RequestParam Integer price) {
         productService.changeProductPrice(productId, price);
     }
-    @GetMapping("products/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
     }
 
-    @PostMapping("products")
-    public void addProduct(@RequestBody Product product) {
+    @PostMapping()
+    public void addProduct(@RequestBody CreateProductDto product) {
         productService.createProduct(product);
     }
 }

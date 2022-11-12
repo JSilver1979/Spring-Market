@@ -2,7 +2,7 @@ package ru.gb.jSilver.SpringMarket.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.gb.jSilver.SpringMarket.dto.Student;
+import ru.gb.jSilver.SpringMarket.data.Student;
 import ru.gb.jSilver.SpringMarket.repos.StudentRepository;
 
 import java.util.List;

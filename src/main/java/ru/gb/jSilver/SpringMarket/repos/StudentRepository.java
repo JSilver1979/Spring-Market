@@ -2,7 +2,7 @@ package ru.gb.jSilver.SpringMarket.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.gb.jSilver.SpringMarket.dto.Student;
+import ru.gb.jSilver.SpringMarket.data.Student;
 
 import java.util.List;
 import java.util.Optional;

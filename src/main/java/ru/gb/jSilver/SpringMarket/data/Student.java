@@ -1,4 +1,4 @@
-package ru.gb.jSilver.SpringMarket.dto;
+package ru.gb.jSilver.SpringMarket.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
