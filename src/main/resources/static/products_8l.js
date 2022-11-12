@@ -1,8 +1,8 @@
 angular.module('app',[]).controller('indexController', function ($scope, $http) {
-    const contextPath = 'http://localhost:8189/app'
+    const contextPath = 'http://localhost:8189/app/api/v1'
 
     $scope.loadProducts = function() {
-        $http.get(contextPath + '/students')
+        $http.get(contextPath + '/products')
             .then(function (response) {
                 $scope.ProductList = response.data;
             });
@@ -22,16 +22,18 @@ angular.module('app',[]).controller('indexController', function ($scope, $http) 
     };
 
     $scope.deleteProduct = function (productId) {
-        $http({
-            url: contextPath + '/products/delete_product',
-            method: 'GET',
-            params: {
-                productId: productId
-            }
-        }).then (function (response) {
+        $http.delete(contextPath + '/products/delete/' + productId)
+        .then (function (response) {
             $scope.loadProducts();
         });
     };
+
+    $scope.addProduct = function (product) {
+        $http.post(contextPath + '/products', $scope.newProduct)
+            .then(function (response) {
+            $scope.loadProducts();
+        });
+    }
 
     $scope.loadProducts();
 });

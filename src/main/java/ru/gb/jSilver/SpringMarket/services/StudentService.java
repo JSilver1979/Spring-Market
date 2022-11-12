@@ -1,35 +1,48 @@
 package ru.gb.jSilver.SpringMarket.services;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.jSilver.SpringMarket.dto.Student;
+import org.springframework.transaction.annotation.Transactional;
+import ru.gb.jSilver.SpringMarket.data.Student;
 import ru.gb.jSilver.SpringMarket.repos.StudentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class StudentService {
     private final StudentRepository repo;
 
-    public Student getStudentByID (Integer id) {
-        return repo.findByID(id);
+    public StudentService(StudentRepository repo) {
+        this.repo = repo;
     }
+
+//    public Student getStudentByID (Long id) {
+//        return repo.findById(id);
+//    }
 
     public List<Student> getAllStudents() {
-        return repo.getAllStudents();
+        return repo.findAll();
     }
 
-    public void addNewStudent(Integer id, String name, Integer score) {
-        repo.addStudent2(id, name, score);
+    public Student findById(Long id) {
+        return repo.findById(id).orElseThrow();
     }
 
-    public void addStudent(Student student) {
-        repo.addStudent2(student);
+    public List<Student> findByScore(Integer min, Integer max) {
+        return repo.findAllByScoreBetween(min,max);
     }
 
-    public void changeScore(Integer id, Integer score) {
-        Student student = repo.findByID(id);
+    public List<Student> findLow() {
+        return repo.findLowRatingStudents();
+    }
+
+    public Optional<Student> findByName(String name) {
+        return repo.findStudentByName(name);
+    }
+
+    @Transactional
+    public void changeScore(Long id, Integer score) {
+        Student student = repo.findById(id).orElseThrow();
         student.setScore(student.getScore() + score);
     }
 }
