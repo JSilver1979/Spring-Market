@@ -1,5 +1,6 @@
 package ru.gb.jSilver.SpringMarket.dto;
 
+
 import ru.gb.jSilver.SpringMarket.data.Product;
 
 public class ProductDto {
@@ -10,9 +11,6 @@ public class ProductDto {
     public ProductDto(Product product) {
         this.title = product.getTitle();
         this.price = product.getPrice();
-    }
-
-    public ProductDto() {
     }
 
     public String getTitle() {

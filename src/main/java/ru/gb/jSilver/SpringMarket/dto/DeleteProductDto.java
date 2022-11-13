@@ -1,13 +1,15 @@
 package ru.gb.jSilver.SpringMarket.dto;
 
+import lombok.NoArgsConstructor;
+
 public class DeleteProductDto {
     private Long id;
 
-    public DeleteProductDto(Long id) {
-        this.id = id;
+    public DeleteProductDto() {
     }
 
-    public DeleteProductDto() {
+    public DeleteProductDto(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

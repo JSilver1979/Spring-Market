@@ -7,15 +7,13 @@ public class ProductListDto {
     private String title;
     private Integer price;
 
+    public ProductListDto() {
+    }
+
     public ProductListDto(Product product) {
         this.id = product.getId();
         this.title = product.getTitle();
         this.price = product.getPrice();
-    }
-
-
-
-    public ProductListDto() {
     }
 
     public Long getId() {

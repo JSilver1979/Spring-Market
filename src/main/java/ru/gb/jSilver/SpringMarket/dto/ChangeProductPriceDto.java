@@ -5,12 +5,12 @@ public class ChangeProductPriceDto {
     private Long id;
     private Integer price;
 
+    public ChangeProductPriceDto() {
+    }
+
     public ChangeProductPriceDto(Long id, Integer price) {
         this.id = id;
         this.price = price;
-    }
-
-    public ChangeProductPriceDto() {
     }
 
     public Long getId() {

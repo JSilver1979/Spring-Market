@@ -1,13 +1,14 @@
 package ru.gb.jSilver.SpringMarket.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.gb.jSilver.SpringMarket.converters.ProductMapper;
 import ru.gb.jSilver.SpringMarket.data.Product;
 import ru.gb.jSilver.SpringMarket.dto.*;
 import ru.gb.jSilver.SpringMarket.repos.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,15 +20,14 @@ public class ProductService {
     }
 
     public ProductDto findById(Long id) {
-        return productRepository.findById(id).map(product -> new ProductDto(product)).orElseThrow();
+        return productRepository.findById(id).map(ProductMapper.MAPPER::fromProduct).orElseThrow();
     }
 
     public List<ProductListDto> findAllProducts() {
-        List<ProductListDto> productList = (List<ProductListDto>) productRepository.findAll()
+        return productRepository.findAll()
                 .stream()
-                .map(product -> new ProductListDto(product))
+                .map(ProductMapper.MAPPER::fromProductToListDto)
                 .collect(Collectors.toList());
-        return productList;
     }
 
 
@@ -37,7 +37,7 @@ public class ProductService {
     }
 
     public void createProduct(CreateProductDto product) {
-        productRepository.save(new Product(product.getTitle(), product.getPrice()));
+        productRepository.save(ProductMapper.MAPPER.toProductFromCreateDto(product));
     }
 
     @Transactional
