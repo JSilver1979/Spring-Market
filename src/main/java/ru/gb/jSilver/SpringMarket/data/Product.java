@@ -1,15 +1,9 @@
 package ru.gb.jSilver.SpringMarket.data;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="products")
-@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +15,9 @@ public class Product {
 
     @Column(name = "price")
     private Integer price;
+
+    public Product() {
+    }
 
     public Product(String title, Integer price) {
         this.title = title;

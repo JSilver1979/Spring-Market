@@ -1,8 +1,7 @@
 package ru.gb.jSilver.SpringMarket.controllers;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.jSilver.SpringMarket.dto.ProductDto;
+import ru.gb.jSilver.SpringMarket.dto.ProductListDto;
 import ru.gb.jSilver.SpringMarket.services.CartService;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class CartController {
     }
 
     @GetMapping()
-    public List<ProductDto> showCart() {
+    public List<ProductListDto> showCart() {
         return cartService.getAllFromCart();
     }
 

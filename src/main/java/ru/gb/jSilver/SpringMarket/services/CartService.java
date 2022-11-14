@@ -1,13 +1,10 @@
 package ru.gb.jSilver.SpringMarket.services;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.gb.jSilver.SpringMarket.converters.ProductMapper;
 import ru.gb.jSilver.SpringMarket.data.Cart;
-import ru.gb.jSilver.SpringMarket.dto.ProductDto;
+import ru.gb.jSilver.SpringMarket.dto.ProductListDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CartService {
@@ -20,20 +17,15 @@ public class CartService {
         this.productService = productService;
     }
 
-    public List<ProductDto> getAllFromCart() {
-        return cart.getCartList()
-                .stream()
-                .map(ProductMapper.MAPPER::fromProduct)
-                .collect(Collectors.toList());
+    public List<ProductListDto> getAllFromCart() {
+        return cart.getCartList();
     }
 
     public void addToCart(Long id) {
-        ProductDto product = productService.findById(id);
-        cart.addProduct(ProductMapper.MAPPER.toProductFromDto(product));
+        cart.addProduct(productService.findByListId(id));
     }
 
     public void removeFromCart (Long id) {
-        ProductDto product = productService.findById(id);
-        cart.removeProduct(ProductMapper.MAPPER.toProductFromDto(product));
+        cart.removeProduct(productService.findByListId(id));
     }
 }

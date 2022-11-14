@@ -6,15 +6,6 @@ public class UpdateProductDto {
     private String title;
     private Integer price;
 
-    public UpdateProductDto(Long id, String title, Integer price) {
-        this.id = id;
-        this.title = title;
-        this.price = price;
-    }
-
-    public UpdateProductDto() {
-    }
-
     public Long getId() {
         return id;
     }

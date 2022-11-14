@@ -1,8 +1,6 @@
 package ru.gb.jSilver.SpringMarket.controllers;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.jSilver.SpringMarket.data.Product;
 import ru.gb.jSilver.SpringMarket.dto.CreateProductDto;
 import ru.gb.jSilver.SpringMarket.dto.ProductDto;
 import ru.gb.jSilver.SpringMarket.dto.ProductListDto;
@@ -10,7 +8,6 @@ import ru.gb.jSilver.SpringMarket.dto.UpdateProductDto;
 import ru.gb.jSilver.SpringMarket.services.ProductService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/products")

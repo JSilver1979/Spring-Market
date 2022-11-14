@@ -13,6 +13,9 @@ public class ProductDto {
         this.price = product.getPrice();
     }
 
+    public ProductDto() {
+    }
+
     public String getTitle() {
         return title;
     }

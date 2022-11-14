@@ -39,4 +39,13 @@ public class ProductListDto {
     public void setPrice(Integer price) {
         this.price = price;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProductListDto) {
+            ProductListDto productListDto = (ProductListDto) obj;
+            return productListDto.id == this.id;
+        }
+        return false;
+    }
 }
