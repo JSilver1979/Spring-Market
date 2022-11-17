@@ -1,6 +1,5 @@
 package ru.gb.jSilver.SpringMarket.data;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -25,14 +24,6 @@ public class Product {
         this.price = price;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -47,5 +38,13 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

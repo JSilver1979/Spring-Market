@@ -1,19 +1,17 @@
 package ru.gb.jSilver.SpringMarket.dto;
 
-import ru.gb.jSilver.SpringMarket.data.Product;
 
 public class CreateProductDto {
 
-    String title;
+    private String title;
+    private Integer price;
 
-    Integer price;
+    public CreateProductDto() {
+    }
 
     public CreateProductDto(String title, Integer price) {
         this.title = title;
         this.price = price;
-    }
-
-    public CreateProductDto() {
     }
 
     public String getTitle() {

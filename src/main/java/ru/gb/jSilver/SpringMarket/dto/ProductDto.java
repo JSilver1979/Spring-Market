@@ -1,5 +1,6 @@
 package ru.gb.jSilver.SpringMarket.dto;
 
+
 import ru.gb.jSilver.SpringMarket.data.Product;
 
 public class ProductDto {

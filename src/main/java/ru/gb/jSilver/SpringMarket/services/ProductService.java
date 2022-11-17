@@ -7,7 +7,6 @@ import ru.gb.jSilver.SpringMarket.dto.*;
 import ru.gb.jSilver.SpringMarket.repos.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,12 +21,15 @@ public class ProductService {
         return productRepository.findById(id).map(product -> new ProductDto(product)).orElseThrow();
     }
 
+    public ProductListDto findByListId(Long id) {
+        return productRepository.findById(id).map(product -> new ProductListDto(product)).orElseThrow();
+    }
+
     public List<ProductListDto> findAllProducts() {
-        List<ProductListDto> productList = (List<ProductListDto>) productRepository.findAll()
+        return productRepository.findAll()
                 .stream()
                 .map(product -> new ProductListDto(product))
                 .collect(Collectors.toList());
-        return productList;
     }
 
 
