@@ -1,0 +1,1 @@
+INSERT INTO MARKET_USERS (LOGIN, PASSWORD) VALUES ( 'manager', 'manager' );
