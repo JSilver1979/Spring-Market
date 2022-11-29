@@ -28,4 +28,8 @@ public class CartService {
                 () -> new ResourceNotFoundException("Cannot add to cart product with id: " + id + ". Product not found"));
         demoCart.add(productDto);
     }
+
+    public void clearCurrentCart() {
+        demoCart.clear();
+    }
 }

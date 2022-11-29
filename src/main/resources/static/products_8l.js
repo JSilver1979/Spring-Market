@@ -33,19 +33,27 @@ angular.module('app',[]).controller('indexController', function ($scope, $http) 
             .then(function (response) {
             $scope.loadProducts();
         });
-    }
+    };
 
     $scope.addToCart = function (productId) {
         $http.get(contextPath + '/cart/add/' + productId)
             .then (function (response) {
                 $scope.loadCart();
             });
-    }
+    };
 
     $scope.loadCart = function() {
         $http.get(contextPath + '/cart')
             .then(function (response) {
                 $scope.cart = response.data;
+            });
+    };
+
+    $scope.createOrder = function () {
+        $http.post(contextPath + '/orders')
+            .then(function (response){
+                alert('Заказ оформлен');
+                $scope.loadCart();
             });
     };
 
