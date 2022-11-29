@@ -2,11 +2,11 @@ package ru.gb.jSilver.SpringMarket.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.jSilver.SpringMarket.data.Product;
 import ru.gb.jSilver.SpringMarket.dto.CreateProductDto;
 import ru.gb.jSilver.SpringMarket.dto.ProductDto;
 import ru.gb.jSilver.SpringMarket.dto.ProductListDto;
 import ru.gb.jSilver.SpringMarket.dto.UpdateProductDto;
+import ru.gb.jSilver.SpringMarket.exceptions.ResourceNotFoundException;
 import ru.gb.jSilver.SpringMarket.services.ProductService;
 
 import java.util.List;
@@ -25,8 +25,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductDto getProduct(@PathVariable Long id) {
-        return productService.findById(id);
+    public ProductDto getProductById(@PathVariable Long id) {
+        return productService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found, id: " + id));
     }
 
     @PutMapping("/update")

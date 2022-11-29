@@ -18,8 +18,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public ProductDto findById(Long id) {
-        return productRepository.findById(id).map(product -> new ProductDto(product)).orElseThrow();
+    public Optional<ProductDto> findById(Long id) {
+        return productRepository.findById(id).map(product -> new ProductDto(product));
     }
 
     public List<ProductListDto> findAllProducts() {
