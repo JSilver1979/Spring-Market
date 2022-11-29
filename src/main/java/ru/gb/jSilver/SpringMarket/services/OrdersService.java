@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.gb.jSilver.SpringMarket.data.Order;
 import ru.gb.jSilver.SpringMarket.data.OrderItem;
 import ru.gb.jSilver.SpringMarket.dto.Cart;
+import ru.gb.jSilver.SpringMarket.repos.OrderItemRepository;
 import ru.gb.jSilver.SpringMarket.repos.OrdersRepository;
 import ru.gb.jSilver.SpringMarket.repos.ProductRepository;
 
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 public class OrdersService {
     private final OrdersRepository ordersRepository;
     private final ProductRepository productRepository;
+    private final OrderItemRepository orderItemRepository;
     private final CartService cartService;
 
 
@@ -33,6 +35,10 @@ public class OrdersService {
                         cartItemDto.getPrice()
                 )
         ).collect(Collectors.toList()));
+        for (OrderItem item: order.getItems()) {
+            orderItemRepository.save(item);
+        }
+
         ordersRepository.save(order);
         cartService.clearCurrentCart();
     }

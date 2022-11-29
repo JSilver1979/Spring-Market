@@ -1,5 +1,6 @@
 package ru.gb.jSilver.SpringMarket.data;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Order {
     private Long id;
 
     @OneToMany(mappedBy = "order")
+    @JsonManagedReference
     private List<OrderItem> items;
 
     @Column(name = "total_price")
